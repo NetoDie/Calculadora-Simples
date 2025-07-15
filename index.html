@@ -1,0 +1,122 @@
+
+
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Calculadora Neon</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+    body {
+      background: radial-gradient(#000000, #0f0f0f);
+      color: #00ff88;
+      font-family: 'Orbitron', sans-serif;
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .calc-container {
+      background: #111;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 0 25px #00ff88;
+      width: 320px;
+      position: relative;
+    }
+    .display {
+      background: #000;
+      color: #00ff88;
+      font-size: 2rem;
+      padding: 20px;
+      border: none;
+      border-radius: 8px;
+      width: 100%;
+      margin-bottom: 20px;
+      text-align: right;
+      box-shadow: inset 0 0 10px #00ff88;
+    }
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+    }
+    button {
+      font-family: inherit;
+      font-size: 1.3rem;
+      padding: 15px;
+      background: #000;
+      color: #00ff88;
+      border: 2px solid #00ff88;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+      box-shadow: 0 0 10px #00ff88;
+    }
+    button:hover {
+      background: #00ff88;
+      color: #000;
+      box-shadow: 0 0 20px #00ff88;
+    }
+    .wide {
+      grid-column: span 2;
+    }
+    .author {
+      position: absolute;
+      top: -35px;
+      right: 10px;
+      font-size: 1rem;
+      color: white;
+    }
+    .author span {
+      color: #00ff88;
+    }
+  </style>
+</head>
+<body>
+  <div class="calc-container">
+    <div class="author">Neto <span>dev</span></div>
+    <input type="text" class="display" id="display" readonly />
+    <div class="buttons">
+      <button onclick="press('7')">7</button>
+      <button onclick="press('8')">8</button>
+      <button onclick="press('9')">9</button>
+      <button onclick="press('/')">÷</button>
+      <button onclick="press('4')">4</button>
+      <button onclick="press('5')">5</button>
+      <button onclick="press('6')">6</button>
+      <button onclick="press('*')">×</button>
+      <button onclick="press('1')">1</button>
+      <button onclick="press('2')">2</button>
+      <button onclick="press('3')">3</button>
+      <button onclick="press('-')">−</button>
+      <button onclick="press('0')">0</button>
+      <button onclick="press('.')">.</button>
+      <button onclick="calculate()">=</button>
+      <button onclick="press('+')">+</button>
+      <button class="wide" onclick="clearDisplay()">C</button>
+    </div>
+  </div>
+
+  <script>
+    const display = document.getElementById('display');
+
+    function press(val) {
+      display.value += val;
+    }
+
+    function clearDisplay() {
+      display.value = '';
+    }
+
+    function calculate() {
+      try {
+        display.value = eval(display.value).toFixed(4).replace(/\.0000$/, '');
+      } catch {
+        display.value = 'Erro';
+      }
+    }
+  </script>
+</body>
+</html>
